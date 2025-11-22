@@ -90,7 +90,9 @@ our %options;
     'smtp_passwd' => '',
     'mail_sender' => "$ENV{USER}",
     'package' => "unknown",
-    'logfile' => "run.log"
+    'logfile' => "run.log",
+    'svn' => "svn",
+    'git' => "git"
     );
 
 $make_run = "make run";
@@ -346,6 +348,11 @@ sub read_configuration($) {
          last SWITCH;
        };
 
+       /\s*git\s*=(.+)/ && do {
+         $options{'git'} = trim($1);
+         last SWITCH;
+       };
+
        /\s*package_name\s*=(.+)/ && do {
          $options{'package'} = trim($1);
          last SWITCH;
@@ -439,19 +446,19 @@ sub run_executable($) {
   my $infile = $_[0];
   my $fail = 0;
 
-  if (($infile ne "") && -f $infile) {
+  if (-f $infile) {
     print(pad_to_textwidth("Run", $padchar)) if verbose();
     $fail = system("$options{'topdir'}/bin/tibercad $infile $to_log_file");
   } 
   else {
+    if ($infile eq "") {
+      print("No inputfile provided!\n");
+    }
+    else {
+      print("Input file $infile does not exist!\n");
+    }
 
-    if (not -e $makefile) {
-      return 1;
-    } 
-
-    print(pad_to_textwidth("Run", $padchar)) if verbose();
-
-    $fail = system("$make_run $to_log_file");
+    return 1;
   }
 
   print_result($fail) if verbose();

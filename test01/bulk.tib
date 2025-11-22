@@ -75,6 +75,7 @@ Simulation
   solve = sweep
   resultpath = output
   output_format = grace
+  searchpath = .
 }
 
 
