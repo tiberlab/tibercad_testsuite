@@ -69,6 +69,7 @@ our $makefile;
 our $make;
 our $make_run;
 our $config;
+our $default_input;
 our $outdir;
 our $refdir;
 our $to_dev_null;
@@ -99,6 +100,7 @@ $make_run = "make run";
 $make = "make";
 $makefile = "Makefile";
 $config = "test.conf";
+$default_input = "input.tib";
 $outdir = "output";
 $refdir = "reference";
 $to_dev_null = " 2> /dev/null > /dev/null";
@@ -414,7 +416,7 @@ sub run_test($) {
   my $command = "";
   (defined $opts{"commandline"}) && ($command = $opts{"commandline"});
 
-  my $infile = "";
+  my $infile = $default_input;
   (defined $opts{"inputfile"}) && ($infile = $opts{"inputfile"});
 
   my $out = $outdir;
