@@ -1,0 +1,37 @@
+# Test configuration file template
+
+# the format is:
+#
+# check = filename : variable1(precision) variable2(precision) ...
+#
+# If you omit any variables, then it will just check
+# if the file has been generated. The precision is optional.
+# Currently accepted file types are:
+# .dat : ASCII column wise numerical data, # as comment
+# .vtu : paraview unstructured grid data
+# .xyz : atomic structure files
+#
+# You can define more than one check
+#
+# Available parameters:
+#
+# (optional lines are commented, with default values indicated)
+
+# the input file
+#inputfile = input.tib
+
+# the output directory
+#outputdir = output
+
+# the reference directory
+#referencedir = reference
+
+# the command line. The default is to run `tibercad <inputfile>`
+#commandline = 
+
+# more than one check can be specified
+# for each variable, a relative tolerance can be given
+check = filename : variable1(1e-6) variable2 variable3
+check = otherfile : var_a var_b
+
+

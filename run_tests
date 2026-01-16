@@ -70,7 +70,7 @@ exit;
 
 
 
-my $configfile = "test.conf";
+my $configfile = "testsuite.conf";
 
 
 # for the final summary
