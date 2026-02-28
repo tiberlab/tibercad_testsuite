@@ -121,8 +121,9 @@ sub repository_info($) {
   if ($#svninfo <= 0) {
     # retry with git
     $revision = (`cd $topdir && $gitcmd describe --always --tags --dirty`);
+    $branch = (`cd $topdir && $gitcmd rev-parse --abbrev-ref HEAD`);
     chomp($revision);
-    print("     git revision: $revision\n") if $info;
+    print("     git revision: $revision on branch $branch\n") if $info;
   }
   else {
 
