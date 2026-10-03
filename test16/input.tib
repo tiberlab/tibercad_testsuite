@@ -35,8 +35,8 @@ Physics
 {
   stiffness isotropic
   {
-   young = 149
-   poisson = 0.349
+   young_modulus = 149
+   poisson_ratio = 0.349
   }
 }
 
