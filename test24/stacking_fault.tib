@@ -1,0 +1,77 @@
+Device
+{
+  meshfile = sf.msh 
+  mesh_units = 1e-9    #nanometers
+
+  x-growth-direction = (0,0,0,1)
+  y-growth-direction = (-1,2,-1,0)
+ 
+
+  Region substrate
+  {
+    material = GaN
+  }
+
+  Region well
+  {
+    material = GaAs
+    x-growth-direction = (1, 1, 1)
+    y-growth-direction = (1, -1, 0)
+  }
+
+  Region cap
+  {
+    material = GaN
+  }
+
+  Atomistic well_cap
+  {
+    reference_region = cap
+    regions = (well, cap)
+    print = xyz
+    cells_along_y = 2
+    cells_along_z = 2
+  }
+
+}
+
+
+
+Module elasticity
+{
+
+ name = strain
+
+ plot = (Strain, StrainCrystal, Stress, Displacement)
+
+ Physics
+ {
+
+  body_force lattice_mismatch
+  {
+    
+   reference_material = GaN
+   x-growth-direction = (0,0,0,1)
+   y-growth-direction = (-1,2,-1,0)
+
+  }
+
+ }
+
+ Contact substrate { type = clamp }
+
+}
+
+
+
+Simulation
+{
+  verbose = 4
+  temperature = 300
+  searchpath = .
+
+  solve = (strain)
+
+  resultpath =  output
+}
+
