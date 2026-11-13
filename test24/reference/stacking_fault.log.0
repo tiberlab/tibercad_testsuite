@@ -1,0 +1,187 @@
+
+Log start: Fri Nov 13 14:34:45 2026
+
+
+Writing log to output/stacking_fault.log.0
+tiberCAD release 3.5.0-88-g2ea7eb25-dirty compiled on 2026-11-11 (x86_64-linux)
+nano1 6.12.86+deb13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.12.86-1 (2026-05-08) x86_64 GNU/Linux
+
+Input file: stacking_fault.tib
+
+Initialize global simulation options
+  Simulation temperature: 300 K
+  Database search path  : .
+  Module library path   : .:/home/maufder/Projects/TIBERCAD/new_trunk/x86_64-linux/modules
+  Log file              : output/stacking_fault.log.0
+
+Setup mesh
+  Reading mesh file 'sf.msh ...
+    mesh reading time: 0h 0m 0.00087s
+    mesh preparation time: 0h 0m 0.00015s
+    bd_regions preparation time: 0h 0m 2e-05s
+
+    mesh units          : 1e-09 m
+    mesh dimension      :       1
+    number of nodes     :      31
+    number of elements  :      30
+    number of subdomains:       3
+    number of boundaries:       1
+
+Create materials ...
+  Added material GaN for region 'substrate' (mesh regions 2)
+    (using datafile ./GaN.dat)
+    Bravais lattice : hexagonal (wz)
+    a = 3.189, c = 5.185
+    x growth direction : (0 0 0 1)
+    y growth direction : (-1 2 -1 0)
+    z growth direction : (-1 0 1 0)
+    Euler angles : alpha = -30, beta = 90, gamma = -0
+  Added material GaAs for region 'well' (mesh regions 3)
+    (using datafile ./GaAs.dat)
+    Bravais lattice : face-centered cubic (zb)
+    a = 5.65325
+    x growth direction : (1 1 1)
+    y growth direction : (1 -1 0)
+    z growth direction : (1 1 -2)
+    Euler angles : alpha = 45, beta = -144.736, gamma = 180
+  Added material GaN for region 'cap' (mesh regions 4)
+    (using datafile ./GaN.dat)
+    Bravais lattice : hexagonal (wz)
+    a = 3.189, c = 5.185
+    x growth direction : (0 0 0 1)
+    y growth direction : (-1 2 -1 0)
+    z growth direction : (-1 0 1 0)
+    Euler angles : alpha = -30, beta = 90, gamma = -0
+Creation of materials done.
+
+Building Atomistic Structure well_cap
+  Create reference lattice: GaN
+  Build a first oversized structure
+  Make conventional cell aligned with cartesian axes
+  Periodic (conventional) cell:
+    a1 = (5.18500, 0.00000, 0.00000)
+    a2 = (0.00000, 3.18900, 0.00000)
+    a3 = (0.00000, 0.00000, 5.52351)
+  Volume of periodic  cell : 91.33104
+  Volume of primitive cell : 45.66552
+    => periodic cell contains 2 primitive lattice cells
+  Relative origin of atomic structure: 1e-06 1.11022e-16 1.84117
+  Making supercell with extensions 67.40x0.00x0.00 = 0.00 nm^3
+  Conventional cells along periodic directions: 13 2 2
+
+  Setup of grid mapper: 0h 0m 3.1e-06s, memory usage: 0 MB 
+  Assign elements progress  done.
+  Assign Species progress  done.
+  Check periodicity ... 
+    structure is periodic along y z
+  done
+  Atomistic structure build time: 0h 0m 0.0045s
+
+  Atomistic Structure containing 368 atoms has been built. 
+  Size not counting passivation hydrogens: 368
+  Supercell structure
+  Lattice vectors (A):
+    a1 = (88.1450 0.00000 0.00000 )
+    a2 = (0.00000 6.37800 0.00000 )
+    a3 = (0.00000 0.00000 11.0470 )
+    Output structure(s)
+    print structure file well_cap.xyz
+
+Setting up simulation of type 'elasticity' ...
+  (using /home/maufder/Projects/TIBERCAD/new_trunk/x86_64-linux/modules/elasticity/elasticity.so)
+    Adding boundary 'substrate'
+    (using /home/maufder/Projects/TIBERCAD/new_trunk/x86_64-linux/modules/elasticity/ebnd_clamp.so)
+  Creating bulk models... 
+    Region: substrate
+    Region: well
+    Region: cap
+
+Setting up bulk models ...
+  (using /home/maufder/Projects/TIBERCAD/new_trunk/x86_64-linux/modules/elasticity/stiffness_anisotropic.so)
+  (using /home/maufder/Projects/TIBERCAD/new_trunk/x86_64-linux/modules/elasticity/body_force_lattice_mismatch.so)
+
+Setting up lower dimensional (boundary) models ...
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Simulation options for strain (elasticity)
+MPI: rank 0 of communicator with size 1
+MPI: solver parallelized on 1 processes
+
+Available solution variables:
+------------------------------------------------------------------
+Name                     Units          Type      Association Plot
+------------------------------------------------------------------
+Strain                                  tensor    nodal       y
+StrainCell                              tensor    cell        n
+StrainCrystal                           tensor    nodal       y
+Stress                   GPa            tensor    nodal       y
+RelativeStrain                          tensor    nodal       n
+StressCrystal            GPa            tensor    nodal       n
+Displacement             m              vector    nodal       y
+ForceSource              N/m3           tensor    nodal       n
+StrainSource                            tensor    nodal       n
+StressSource             GPa            tensor    nodal       n
+HydrostaticStrain                       real      nodal       n
+EnergyDensity            J/m^3          real      nodal       n
+RegionIDs                               real      cell        n
+------------------------------------------------------------------
+
+Output directory      : output
+Output file format    : grace
+Output file basename  : strain
+
+
+# Region cap, GaN
+  Stiffness Constants (GPa, in calculation coordinate system):
+    C11 = 405 C12 = 103 C13 = 103 C33 = 367 C44 = 116
+  Lattice mismatch body force model
+  Reference material : GaN
+
+# Region substrate, GaN
+  Stiffness Constants (GPa, in calculation coordinate system):
+    C11 = 405 C12 = 103 C13 = 103 C33 = 367 C44 = 116
+  Lattice mismatch body force model
+  Reference material : GaN
+
+# Region well, GaAs
+  Stiffness Constants (GPa, in calculation coordinate system):
+    C11 = 158.433 C12 = 38.4333 C44 = 50.9167
+  Lattice mismatch body force model
+  Reference material : GaN
+  Common supercell : 
+    substrate:
+      0 1 0
+      1 0 0
+      0 0 3
+    superstrate:
+      -1  1  0
+       1  0 -1
+       2  2  2
+    lattice matching strain:
+      (xx,xy,xz)=(-0.205706,        0,        0)
+      (yx,yy,yz)=(       0, -0.202242, -2.7791e-17)
+      (zx,zy,zz)=(       0, -2.7791e-17, -0.202242)
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+We solve: strain 
+
+>>>>--------------------------------- (strain) ---------------------------------
+
+  | Iteration | Elastic energy [J] | ||u|| [m.u.] | dE [%] | du [m.u.] |
+  -------------------------------------------------------------------------------------
+  |         1 |        1.13388e+10 |     0.472603 |    inf |  0.472603 |
+
+Solve time: 0h 0m 0.0061s
+<<<<----------------------------------------------------------------------------
+
+Total solve time: 0h 0m 0.022s
+Simulation finished.
+
+0 warnings during run
+0 errors detected
+
+
+Log end: Fri Nov 13 14:34:45 2026
+
+

@@ -23,6 +23,7 @@ test20     Negf tests           negf + DD
 test21     - unused -
 test22     Image import         imagereader + DD
 test23     Alloy profile	DD
-test24     - missing -
+test24     wz/zb hetero-	Elasticity, test for lattice natching
+           structure
 test25     - unused -
 test26     MAPbI                combination of MAPbI atomic structures in different phases
